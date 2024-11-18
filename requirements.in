@@ -1,5 +1,6 @@
 coverage
 django
+django-filter
 djangorestframework
 djangorestframework-simplejwt
 django-environ

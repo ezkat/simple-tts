@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'simple_tts',
+    'conversion',
     'django_admin_inline_paginator',
 ]
 

@@ -1,0 +1,7 @@
+coverage
+django
+djangorestframework
+djangorestframework-simplejwt
+django-environ
+django-admin-inline-paginator
+schedule

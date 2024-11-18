@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
+import random
+import time
 import logging
 
 
@@ -35,6 +37,29 @@ class ConversionRequest(models.Model):
         instance = super().save(*args, **kwargs)
         self.create_history_entry()
         return instance
+    
+    def process_tts(self):
+        logger.info('Processing TTS')
+        self.status = ConversionRequest.IN_PROGRESS
+        self.save()
+
+        time.sleep(random.randint(3, 6))
+
+        try:
+            if random.randint(0,100) == 50:
+                raise Exception("SuddenException")
+            
+            file_name = f'tts_output_{self.pk}.wav'
+            dummy_file = ContentFile('dummy tts output file', name=file_name)
+            self.output.save(file_name, dummy_file) # This will create a second "IN_PROGRESS" entry, add more verbose status_message later?
+
+            self.status = ConversionRequest.COMPLETED
+            self.save()
+        except Exception as exc:
+            logger.error(exc)
+            self.status = ConversionRequest.FAILED
+            self.save()
+        
 
 
 class ConversionRequestHistory(models.Model):

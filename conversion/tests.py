@@ -32,7 +32,7 @@ class ConversionRequestHistoryInline(TestCase):
         ConversionRequest.objects.create(user=self.user, text='Donec fringilla dapibus velit nec fermentum')
         response = self.client.get('/api/v1/conversion_requests/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 2)
+        self.assertEqual(len(response.data['results']), 2)
 
     def test_fail_retrieve_other_user_conversion_requests(self):
         other_user = User.objects.create_user(username='other_test_user', password='4321')

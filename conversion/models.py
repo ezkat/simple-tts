@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.files.base import ContentFile
 import logging
 
 
@@ -26,3 +27,26 @@ class ConversionRequest(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.status}'
+    
+    def create_history_entry(self):
+        ConversionRequestHistory.objects.create(conversion_request=self, text=self.text, status=self.status)
+
+    def save(self, *args, **kwargs):
+        instance = super().save(*args, **kwargs)
+        self.create_history_entry()
+        return instance
+
+
+class ConversionRequestHistory(models.Model):
+    conversion_request = models.ForeignKey(ConversionRequest,
+                                           related_name='history', on_delete=models.CASCADE)
+    text = models.TextField(max_length=300)
+    status = models.CharField(max_length=15, choices=ConversionRequest.STATUS_CHOICES)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ('id', )
+
+    
+    def __str__(self):
+        return 'Conversion Request History'

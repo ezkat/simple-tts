@@ -1,4 +1,5 @@
 # Simple Django TTS Request API
+[![simple-tts](https://github.com/ezkat/simple-tts/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/ezkat/simple-tts/actions/workflows/main.yml)
 
 A RESTful API for managing TTS conversion requests.
 Project is built with Django and DRF.

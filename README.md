@@ -27,7 +27,7 @@ While the actual TTS generation is not implemented, the system simulates it and 
         git clone https://github.com/ezkat/simple-tts
         cd simple-tts
         ```
-    2. Set up python virtualenv
+    2. Setup python virtualenv
         ```
         pip install virtualenv
         python -m virtualenv venv
@@ -90,7 +90,7 @@ DISABLE_SERVER_SIDE_CURSORS: bool
     - Example:
         ```
         curl -X POST http://localhost:8000/api/v1/auth/token/ \
-            -H "Content-Type: application/json"
+            -H "Content-Type: application/json" \
             -d '{"username": "api_user", "password": "123"}'
         ```
     - Returns: access token, refresh token
@@ -99,7 +99,7 @@ DISABLE_SERVER_SIDE_CURSORS: bool
     - Example:
         ```
         curl -X POST http://localhost:8000/api/v1/auth/token/refresh/ \
-            -H "Content-Type: application/json"
+            -H "Content-Type: application/json" \
             -d '{"refresh": "refresh_token"}'
         ```
     - Returns: access token

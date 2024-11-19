@@ -1,4 +1,4 @@
-name: simple-tts actions
+name: simple-tts
 
 on:
   push:

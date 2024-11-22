@@ -18,7 +18,7 @@ While the actual TTS generation is not implemented, the system simulates it and 
 
 ## Setup
 - Prerequisites
-    - Python 3.8
+    - Python 3.10 or later
     - pip
     - virtualenv
 
